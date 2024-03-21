@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Note; //Importamos el modelo
 use Illuminate\Cache\RedisTagSet;
+use App\Http\Requests\NoteRequest;
 
 class NoteController extends Controller
 {
@@ -23,10 +24,10 @@ class NoteController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(NoteRequest $request)
     {
         Note::create($request->all());
-        return redirect()->route('index');
+        return redirect()->route('index')->with('success', 'Nota creada con éxito');
     }
 
     /**
@@ -47,7 +48,7 @@ class NoteController extends Controller
     public function update(Request $request, Note $note)
     {
         $note->update($request->all());
-        return redirect()->route('index');
+        return redirect()->route('index')->with('success', 'Nota actualizada con éxito');
     }
 
     /**
@@ -56,6 +57,6 @@ class NoteController extends Controller
     public function destroy(Request $request, Note $note)
     {
         $note->delete($request->all());
-        return redirect()->route('index');
+        return redirect()->route('index')->with('danger', 'Nota eliminada con éxito');
     }
 }

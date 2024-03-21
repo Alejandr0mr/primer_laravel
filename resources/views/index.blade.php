@@ -10,6 +10,18 @@
     <title>Document</title>
 </head>
 <body>
+
+    @if($message = Session::get('successgit'))
+<div style="padding: 15px; background-color: green; color:white;">
+    <h2>{{$message}}</h2>
+</div>
+@endif
+
+@if($message = Session::get('danger'))
+<div style="padding: 15px; background-color: red; color:white;">
+    <h1>{{$message}}</h2>
+</div>
+@endif
     <div class="container">
         <div class="container d-flex justify-content-center">
             <a href="{{route('create')}}" class="btn btn-primary mt-3 mb-3">Crear nueva categoría</a>
@@ -19,6 +31,7 @@
         <table class="table table-striped">
             <thead>
                 <tr>
+                    <th scope="col">ID</th>
                     <th scope="col">Título</th>
                     <th scope="col">Descripción</th>
                     <th scope="col" class="justify-content-center" >Acciones</th>
@@ -27,6 +40,7 @@
             <tbody>
                 @forelse($notes as $note)
                 <tr>
+                    <td>{{$note->id}}</td>
                     <td>{{$note->title}}</td>
                     <td>{{$note->description}}</td>
                     <td><a href="{{route('show',$note->id)}}" class="btn btn-primary">Ver</a>
@@ -43,4 +57,6 @@
         </table>
     </div>
 </body>
+
+
 </html>

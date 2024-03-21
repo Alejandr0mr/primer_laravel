@@ -20,10 +20,16 @@
                             <div class="form-group">
                                 <label for="title">Título:</label>
                                 <input type="text" class="form-control" id="title" name="title">
+                                @error('title')
+                                <p style="color: red">{{$message}}</p>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="description">Descripción:</label>
                                 <input type="text" class="form-control" id="description" name="description">
+                                @error('description')
+                                <p style="color: red">{{$message}}</p>
+                                @enderror
                             </div>
                             <button type="submit" class="btn btn-primary container d-flex justify-content-center mt-2">Crear</button>
                         </form>
